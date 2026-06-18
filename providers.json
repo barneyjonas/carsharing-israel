@@ -1,0 +1,74 @@
+[
+  {
+    "id": "autotel",
+    "name": { "en": "AutoTel", "he": "אוטוטל" },
+    "type": "free-floating",
+    "cities": ["tel-aviv", "ramat-gan", "givatayim", "petah-tikva"],
+    "vehicles": ["electric", "hybrid"],
+    "website": "https://www.autotel.co.il",
+    "logo": "assets/logos/autotel.png",
+    "description": {
+      "en": "Israel's largest carsharing service. Free-floating electric and hybrid vehicles across the Tel Aviv metropolitan area. Pick up and drop off anywhere within the service zone.",
+      "he": "שירות שיתוף הרכב הגדול בישראל. רכבים חשמליים והיברידיים בשיטת free-floating באזור גוש דן. אסוף ושחרר את הרכב בכל מקום באזור השירות."
+    },
+    "priceInfo": {
+      "en": "Per-minute pricing. Subscription plans available.",
+      "he": "תמחור לפי דקה. קיימות תוכניות מנוי."
+    },
+    "coordinates": [32.0853, 34.7818],
+    "coverageZone": "tel-aviv-metro",
+    "appLinks": {
+      "ios": "https://apps.apple.com/il/app/autotel/id1234567890",
+      "android": "https://play.google.com/store/apps/details?id=il.co.autotel"
+    },
+    "active": true,
+    "founded": 2014,
+    "operator": "AutoTel Ltd."
+  },
+  {
+    "id": "coop-placeholder",
+    "name": { "en": "Provider 2", "he": "ספק 2" },
+    "type": "round-trip",
+    "cities": ["jerusalem", "haifa"],
+    "vehicles": ["standard", "electric"],
+    "website": "#",
+    "logo": "assets/logos/placeholder.png",
+    "description": {
+      "en": "⚠️ Placeholder — replace with real provider data.",
+      "he": "⚠️ דוגמה — יש להחליף בנתוני ספק אמיתי."
+    },
+    "priceInfo": {
+      "en": "Hourly and daily rates.",
+      "he": "תמחור לפי שעה ויום."
+    },
+    "coordinates": [31.7683, 35.2137],
+    "coverageZone": "jerusalem",
+    "appLinks": { "ios": "", "android": "" },
+    "active": false,
+    "founded": null,
+    "operator": "TBD"
+  },
+  {
+    "id": "peer-placeholder",
+    "name": { "en": "Provider 3", "he": "ספק 3" },
+    "type": "peer-to-peer",
+    "cities": ["haifa", "tel-aviv"],
+    "vehicles": ["standard"],
+    "website": "#",
+    "logo": "assets/logos/placeholder.png",
+    "description": {
+      "en": "⚠️ Placeholder — replace with real provider data.",
+      "he": "⚠️ דוגמה — יש להחליף בנתוני ספק אמיתי."
+    },
+    "priceInfo": {
+      "en": "Daily rental from private owners.",
+      "he": "השכרה יומית מבעלים פרטיים."
+    },
+    "coordinates": [32.7940, 34.9896],
+    "coverageZone": "haifa",
+    "appLinks": { "ios": "", "android": "" },
+    "active": false,
+    "founded": null,
+    "operator": "TBD"
+  }
+]

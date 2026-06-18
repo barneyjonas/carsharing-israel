@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="מדריך עצמאי לשיתוף רכב בישראל | Independent guide to carsharing in Israel">
+  <title>שיתוף רכב בישראל | Carsharing Israel</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="lang-he">
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-mark">ש</div>
+        <span>שיתוף רכב ישראל</span>
+      </div>
+      <nav>
+        <a href="#providers" data-i18n="navProviders">ספקים</a>
+        <a href="#map" data-i18n="navMap">מפה</a>
+        <a href="#compare" data-i18n="navCompare">השוואה</a>
+        <a href="#about" data-i18n="navAbout">אודות</a>
+        <button class="lang-toggle">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <h1 data-i18n="heroTitle">שיתוף רכב <span>בישראל</span></h1>
+    <p data-i18n="heroSubtitle">מדריך עצמאי ומקיף לכל שירותי שיתוף הרכב בישראל. השווה ספקים, כיסוי עיר, מחירים וסוגי רכב.</p>
+    <div class="hero-cta">
+      <a href="#providers" class="btn btn-primary" data-i18n="heroCta1">השווה ספקים</a>
+      <a href="#map" class="btn btn-outline" data-i18n="heroCta2">צפה במפה</a>
+    </div>
+  </section>
+
+  <!-- ── Stats Bar ── -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-number" id="stat-providers">3</span>
+        <div class="stat-label" data-i18n="statProviders">ספקים</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">4</span>
+        <div class="stat-label" data-i18n="statCities">ערים</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">3</span>
+        <div class="stat-label" data-i18n="statTypes">סוגי שירות</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Filters ── -->
+  <div class="filters-section" id="filters">
+    <div class="filters-inner">
+      <div class="filter-group">
+        <label data-i18n="filterCity">עיר:</label>
+        <select id="filter-city">
+          <option value="all" data-i18n="cityAll">כל הערים</option>
+          <option value="tel-aviv" data-i18n="cityTelAviv">תל אביב</option>
+          <option value="jerusalem" data-i18n="cityJerusalem">ירושלים</option>
+          <option value="haifa" data-i18n="cityHaifa">חיפה</option>
+          <option value="beer-sheva" data-i18n="cityBeerSheva">באר שבע</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filterType">סוג:</label>
+        <select id="filter-type">
+          <option value="all" data-i18n="filterAll">הכל</option>
+          <option value="free-floating" data-i18n="typeFreeFloating">Free-floating</option>
+          <option value="round-trip" data-i18n="typeRoundTrip">הלוך-חזור</option>
+          <option value="peer-to-peer" data-i18n="typePeerToPeer">עמית-לעמית</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label data-i18n="filterVehicle">רכב:</label>
+        <select id="filter-vehicle">
+          <option value="all" data-i18n="filterAll">הכל</option>
+          <option value="electric" data-i18n="vehicleElectric">חשמלי</option>
+          <option value="hybrid" data-i18n="vehicleHybrid">היברידי</option>
+          <option value="standard" data-i18n="vehicleStandard">רגיל</option>
+        </select>
+      </div>
+      <button class="filter-reset" id="filter-reset" data-i18n="filterReset">נקה סינון</button>
+    </div>
+  </div>
+
+  <!-- ── Providers ── -->
+  <section class="providers-section" id="providers">
+    <div class="container">
+      <h2 class="section-title" data-i18n="providersTitle">ספקי שיתוף <span>הרכב</span></h2>
+      <p class="section-subtitle" data-i18n="providersSubtitle">כל הספקים הפעילים בישראל</p>
+      <div class="providers-grid" id="providers-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Map ── -->
+  <section class="map-section" id="map">
+    <div class="container">
+      <h2 class="section-title" data-i18n="mapTitle">כיסוי <span>גיאוגרפי</span></h2>
+      <p class="section-subtitle" data-i18n="mapSubtitle">אזורי פעילות של כל ספק</p>
+      <div id="map"></div>
+    </div>
+  </section>
+
+  <!-- ── Comparison ── -->
+  <section class="comparison-section" id="compare">
+    <div class="container">
+      <h2 class="section-title" data-i18n="compareTitle">השוואת <span>ספקים</span></h2>
+      <p class="section-subtitle" data-i18n="compareSubtitle">השוואה מהירה בין כל הספקים</p>
+      <div class="table-wrapper">
+        <table>
+          <thead id="compare-thead"></thead>
+          <tbody id="compare-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <h2 class="section-title" data-i18n="aboutTitle">על <span>הפרויקט</span></h2>
+      <p class="section-subtitle" data-i18n="aboutSubtitle">מדריך עצמאי לשיתוף רכב בישראל</p>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3 data-i18n="aboutCard1Title">מה זה שיתוף רכב?</h3>
+          <p data-i18n="aboutCard1Text">שיתוף רכב מאפשר לאנשים להשתמש ברכב לפי הצורך מבלי להחזיקו. תשלום לפי שימוש, ללא ביטוח, תחזוקה וחניה.</p>
+        </div>
+        <div class="about-card">
+          <h3 data-i18n="aboutCard2Title">למה זה חשוב?</h3>
+          <p data-i18n="aboutCard2Text">פחות רכבים בדרכים = פחות פקק, פחות זיהום, פחות צורך בחניות. שיתוף רכב הוא חלק מתחבורה ציבורית חכמה.</p>
+        </div>
+        <div class="about-card">
+          <h3 data-i18n="aboutCard3Title">המידע</h3>
+          <p data-i18n="aboutCard3Text">האתר הזה הוא מקור מידע עצמאי ולא-מסחרי. אנחנו לא מייצגים ספק מסוים ועושים מאמץ לשמור על דיוק ועדכניות.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Resources ── -->
+  <section class="resources-section" id="resources">
+    <div class="container">
+      <h2 class="section-title" data-i18n="resourcesTitle">מקורות <span>ומחקרים</span></h2>
+      <p class="section-subtitle" data-i18n="resourcesSubtitle">קישורים שימושיים לתחבורה שיתופית בישראל</p>
+      <div class="resources-grid">
+        <div class="resource-card">
+          <div class="resource-icon">🏛️</div>
+          <div>
+            <h4>משרד התחבורה</h4>
+            <p>מדיניות ורגולציה של תחבורה שיתופית בישראל</p>
+            <a href="https://www.gov.il/he/departments/ministry_of_transport" target="_blank" rel="noopener">לאתר ←</a>
+          </div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">🌍</div>
+          <div>
+            <h4>CoMoUK</h4>
+            <p>מחקרים ודוחות על תחבורה שיתופית מבריטניה</p>
+            <a href="https://www.como.org.uk" target="_blank" rel="noopener">לאתר ←</a>
+          </div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">🔬</div>
+          <div>
+            <h4>CHACOMO</h4>
+            <p>אסוציאציה שוויצרית לניידות שיתופית — נתונים ומחקר</p>
+            <a href="https://www.chacomo.ch" target="_blank" rel="noopener">לאתר ←</a>
+          </div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">📊</div>
+          <div>
+            <h4>UITP</h4>
+            <p>ארגון בינלאומי לתחבורה ציבורית — מחקרים על שיתוף רכב</p>
+            <a href="https://www.uitp.org" target="_blank" rel="noopener">לאתר ←</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo" style="margin-bottom:1rem">
+            <div class="logo-mark">ש</div>
+            <span style="color:white;font-weight:700">שיתוף רכב ישראל</span>
+          </div>
+          <p data-i18n="footerTagline">מידע עצמאי על שיתוף רכב בישראל</p>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footerQuickLinks">ניווט מהיר</h4>
+          <a href="#providers" data-i18n="navProviders">ספקים</a>
+          <a href="#map" data-i18n="navMap">מפה</a>
+          <a href="#compare" data-i18n="navCompare">השוואה</a>
+          <a href="#about" data-i18n="navAbout">אודות</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footerContact">יצירת קשר</h4>
+          <p data-i18n="footerContactText">שגיאה במידע? מכיר ספק שחסר? כתוב לנו.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 <span>Carsharing Israel</span></span>
+        <span data-i18n="footerRights">כל הזכויות שמורות</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
