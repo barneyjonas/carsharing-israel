@@ -178,6 +178,15 @@
       blogTitle: "Carsharing blog",
       faqTitle: "Frequently asked questions",
       contactTitle: "Contact",
+      blogEyebrow: "Carsharing insights",
+      blogH1: "Blog",
+      blogIntro: "Articles about carsharing in Israel — costs, electric vehicles, and how to decide if it makes sense for you.",
+      blog1Tag: "Cost",
+      blog1Title: "How to compare carsharing with car ownership",
+      blog1Desc: "A trip-by-trip method using current tariffs, without relying on a universal mileage rule.",
+      blog2Tag: "Electric",
+      blog2Title: "Electric cars in Israeli carsharing — what to know",
+      blog2Desc: "Which providers offer EVs, why it matters, and what to check before you book.",
       contactMeta: "Contact Carsharing Israel — report an error or suggest a missing provider.",
       contactTitleMeta: "Contact | Carsharing Israel",
       contactEyebrow: "Get in touch",
@@ -400,6 +409,15 @@
       blogTitle: "בלוג שיתוף רכב",
       faqTitle: "שאלות נפוצות",
       contactTitle: "יצירת קשר",
+      blogEyebrow: "תובנות שיתוף רכב",
+      blogH1: "בלוג",
+      blogIntro: "מאמרים על שיתוף רכב בישראל — עלויות, רכבים חשמליים וכיצד להחליט אם זה מתאים לכם.",
+      blog1Tag: "עלויות",
+      blog1Title: "כיצד להשוות שיתוף רכב עם בעלות על רכב",
+      blog1Desc: "שיטת חישוב לפי נסיעות בפועל ותעריפים עדכניים, ללא הסתמכות על כלל קילומטראז׳ אוניברסלי.",
+      blog2Tag: "חשמלי",
+      blog2Title: "רכבים חשמליים בשיתוף רכב בישראל — מה כדאי לדעת",
+      blog2Desc: "אילו ספקים מציעים רכבים חשמליים, למה זה חשוב ומה לבדוק לפני ההזמנה.",
       contactMeta: "צרו קשר עם שיתוף רכב ישראל — דווחו על שגיאה או הציעו ספק שחסר.",
       contactTitleMeta: "יצירת קשר | שיתוף רכב ישראל",
       contactEyebrow: "צרו קשר",
@@ -487,6 +505,9 @@
     document.querySelectorAll("[data-lang-button]").forEach(button => {
       const isActive = button.getAttribute("data-lang-button") === lang;
       button.setAttribute("aria-pressed", String(isActive));
+    });
+    document.querySelectorAll("[data-lang]").forEach(el => {
+      el.style.display = el.getAttribute("data-lang") === lang ? "" : "none";
     });
   }
 
