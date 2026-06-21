@@ -59,6 +59,13 @@
     return providers.map(provider => lang() === "he" && provider.hebrewName ? provider.hebrewName : provider.name).sort((a, b) => a.localeCompare(b)).join(", ");
   }
 
+  function providerLinks(providers) {
+    return providers
+      .sort((a, b) => (lang() === "he" && a.hebrewName ? a.hebrewName : a.name).localeCompare(lang() === "he" && b.hebrewName ? b.hebrewName : b.name))
+      .map(p => `<a href="${p.website}" target="_blank" rel="noopener" style="display:block;color:#1d6b4f;font-weight:700;text-decoration:none;margin-top:4px">${lang() === "he" && p.hebrewName ? p.hebrewName : p.name} ↗</a>`)
+      .join("");
+  }
+
   function buildCityCoverage(providers) {
     const coverage = new Map();
     providers.forEach(provider => {
@@ -113,7 +120,7 @@
         weight: 2,
         fillOpacity: 0.75
       });
-      marker.bindPopup(`<strong>${cityName(item.city)}</strong><br>${item.providers.length} ${item.providers.length === 1 ? tr("providerSingular") : tr("providerPlural")}<br>${providerNameList(item.providers)}`);
+      marker.bindPopup(`<strong>${cityName(item.city)}</strong><br>${item.providers.length} ${item.providers.length === 1 ? tr("providerSingular") : tr("providerPlural")}${providerLinks(item.providers)}`);
       marker.addTo(markerLayer);
     });
     if (bounds.length > 1) {
