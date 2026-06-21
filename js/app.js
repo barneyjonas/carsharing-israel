@@ -27,6 +27,10 @@ function localizedPricing(provider) {
   return lang() === "he" && provider.pricingModelsHe?.length ? provider.pricingModelsHe : provider.pricingModels;
 }
 
+function localizedPricingSummary(provider) {
+  return lang() === "he" && provider.pricingSummaryHe ? provider.pricingSummaryHe : provider.pricingSummary;
+}
+
 function localizedBestFor(provider) {
   return lang() === "he" && provider.bestForHe?.length ? provider.bestForHe : provider.bestFor;
 }
@@ -74,6 +78,15 @@ function touristText(value) {
   return tr(value || "unknown");
 }
 
+function sourceLinks(provider) {
+  if (!provider.sources?.length) return `<span>${tr("needsVerification")}</span>`;
+  return provider.sources.map(source => {
+    const label = lang() === "he" && source.labelHe ? source.labelHe : source.label;
+    const status = source.status === "official" ? tr("officialSource") : source.status === "dated" ? tr("datedSource") : tr("secondarySource");
+    return `<a class="source-link" href="${source.url}" target="_blank" rel="noopener noreferrer">${label} <small>(${status})</small> ↗</a>`;
+  }).join("");
+}
+
 
 const SERVICE_ICONS = {
   round_trip_carsharing: "🔄",
@@ -113,9 +126,11 @@ function providerCard(provider) {
       <div class="meta-list">
         <div class="meta-item"><strong>${tr("citiesAreas")}</strong><span>${labelList(localizedCities(provider))}</span></div>
         <div class="meta-item"><strong>${tr("pricingStructure")}</strong><span>${labelList(localizedPricing(provider))}</span></div>
+        <div class="meta-item price-snapshot"><strong>${tr("priceSnapshot")}</strong><span>${localizedPricingSummary(provider) || tr("needsVerification")}</span></div>
         <div class="meta-item"><strong>${tr("returnModel")}</strong><span>${localizedReturn(provider)}</span></div>
         <div class="meta-item"><strong>${tr("bestFor")}</strong><span>${labelList(localizedBestFor(provider))}</span></div>
         <div class="meta-item"><strong>${tr("dataStatus")}</strong><span>${localizedDataStatus(provider)}</span></div>
+        <div class="meta-item source-list"><strong>${tr("sources")}</strong>${sourceLinks(provider)}</div>
       </div>
       <div class="card-footer">
         <span class="small-note">${tr("lastChecked")}: ${localizedLastChecked(provider)}</span>

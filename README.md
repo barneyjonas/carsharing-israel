@@ -1,97 +1,117 @@
 # Carsharing Israel
 
-An overview website for comparing carsharing providers in Israel.
+Carsharing Israel is an independent, NGO-style public information website about carsharing and short-term shared-car access in Israel.
 
----
+## Product Identity
 
-## What It Is
+This project is:
 
-A simple, mobile-first website that helps people in Israel find and compare carsharing options — all in one place. Covers multiple providers with filters, a map, and a comparison table. Available in English and Hebrew.
+- A neutral consumer-information and research website.
+- A public comparison of Israeli carsharing operators, prices, coverage and service models.
+- Independent from every operator listed on the site.
+- Designed to improve transparency and help people make informed transport choices.
+- Available in English and Hebrew.
 
----
+This project is **not an app**, booking platform, marketplace, carsharing operator or commercial affiliate website.
 
-## Status
+## Non-Negotiable Boundaries
 
-Early MVP — in development. Static/semi-static site, no backend required.
+Do not turn this website into an app or add:
 
----
+- User accounts, login or personal profiles.
+- Booking, payment or vehicle-unlock functionality.
+- Live vehicle or station availability.
+- Operator account connections or TOMP/MaaS integrations.
+- Referral rankings, paid placement or undisclosed sponsored recommendations.
+- Claims that the site operates, owns or supplies vehicles.
 
-## MVP Features
+Links may send users to official operator websites or apps, but all transactions and registrations happen outside this website.
 
-- Provider overview with cards and logos
-- City and use-case filters
-- Comparison table
-- Map showing provider coverage
-- Bilingual: English / Hebrew (EN/HE)
-- Simple provider data file (JSON) — easy to update
+## Editorial Principles
 
----
+The website should remain factual, cautious and useful:
 
-## Tech Stack
+1. Prefer official operator tariff, FAQ, terms and service pages.
+2. Show a direct source link beside provider and pricing information.
+3. Record the date on which information was checked.
+4. Label dated, secondary or app-only information clearly.
+5. Never invent a price when a current public tariff cannot be verified.
+6. Distinguish classic carsharing from rental-like short-term access.
+7. Avoid declaring one operator "best" or "cheapest" without a reproducible trip comparison.
+8. Remind readers that the final operator website or app price controls.
 
-| Tool | Purpose |
-|---|---|
-| HTML | Structure |
-| CSS | Styling (mobile-first) |
-| JavaScript | Filters, map, language switching |
-| JSON | Provider data file |
-| Leaflet | Interactive map |
+The current provider research was checked on **21 June 2026**. AutoTel's accessible official tariff is dated 2020, and CityCar's current prices are presented through a dynamic tariff interface; the website discloses both limitations.
 
----
+## Current Website Features
+
+- Provider information cards with dated price snapshots and sources.
+- Filters for city, use case, service model, pricing model and eligibility status.
+- Approximate city coverage map, not live vehicle locations.
+- Provider comparison table.
+- English and Hebrew content with RTL support.
+- Methodology, guide, FAQ and research-based articles.
+
+## Technology
+
+The website is deliberately static and requires no backend or build step:
+
+- HTML for pages.
+- CSS in `css/styles.css`.
+- Vanilla JavaScript in `js/`.
+- Leaflet for the approximate coverage map.
+- GitHub Pages-compatible static hosting.
+
+The primary provider dataset is `js/providers.js`. It includes bilingual descriptions, pricing snapshots, verification dates and source URLs.
 
 ## Project Structure
 
+```text
+index.html              Main provider overview and map
+compare.html            Provider comparison table
+methodology.html        Inclusion and verification policy
+guide.html              Consumer guide
+faq.html                Frequently asked questions
+blog.html               Research article index
+blog-*.html             Informational articles
+css/styles.css          Active site styles
+js/providers.js         Primary researched provider dataset
+js/app.js               Provider cards and filters
+js/compare.js           Comparison table rendering
+js/i18n.js              English/Hebrew translations
+js/map.js               Approximate coverage map
 ```
-index.html           # Main entry point
-styles.css           # Main stylesheet
-script.js            # Filters, map, language logic
-providers.json       # Provider data (name, coverage, links, logos)
-assets/
-  logos/             # Provider logos
-CODEX_PROMPT.md      # Instructions for AI coding agents
-```
 
----
+Some older root-level files and archives remain in the repository for historical reasons. Confirm which files are loaded by the active HTML pages before editing.
 
-## Getting Started
+## Running Locally
 
-No build step required. Open `index.html` in a browser, or serve with any static file server:
+No installation or compilation is required. Serve the directory with any static server:
 
 ```bash
 npx serve .
 ```
 
----
+Then open the local URL printed by the server.
 
-## Adding a Provider
+## Updating Provider Data
 
-Open `providers.json` and add a new entry following the existing structure. Make sure all required fields are filled — missing fields will break the filter and comparison logic.
+When updating `js/providers.js`:
 
----
+1. Research the official operator website first.
+2. Confirm the price components, including time, distance, membership and major surcharges.
+3. Update both `pricingSummary` and `pricingSummaryHe`.
+4. Update `lastChecked` and `lastCheckedHe` with an exact date.
+5. Add every supporting URL to the provider's `sources` array.
+6. Explain uncertainty in `dataStatus` and `dataStatusHe`.
+7. Test English, Hebrew, desktop and mobile views.
+8. Check related FAQ, guide and blog claims for contradictions.
 
-## Bilingual Support
+## Guidance For AI Assistants
 
-The site supports English and Hebrew. Language switching is handled in `script.js`. When adding new content, make sure both language versions are updated.
+Before making changes, read this README and inspect the active files. Preserve the project's identity as an independent informational NGO-style website.
 
-Hebrew content uses RTL layout — test any UI changes in both directions.
+Do not propose app features merely because the subject involves mobility. Prioritize research quality, source visibility, accessibility, bilingual consistency and simple static publishing.
 
----
+## Disclaimer
 
-## Not in MVP
-
-- User accounts or login
-- Booking or payment
-- Real-time vehicle availability
-- TOMP-API integration
-- Backend or database
-
-TOMP-API and MaaS integration may be considered in a later version if the project expands toward public transport interoperability.
-
----
-
-## Next Steps
-
-- Complete provider data for all major Israeli carsharing services
-- Finalize map coverage per provider
-- Test bilingual layout on mobile
-- Deploy (e.g. Netlify)
+Carsharing Israel is not affiliated with the listed providers. Prices, service areas, vehicle availability, eligibility and insurance terms can change. Users must verify the final terms directly with the provider before registering or booking.

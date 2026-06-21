@@ -3,8 +3,8 @@ window.PROVIDERS = [
     id: "goto-car2go",
     name: "GoTo / CAR2GO",
     hebrewName: "גוטו / קאר2גו",
-    vehicleTypes: ["standard"],
-    hasEV: false,
+    vehicleTypes: ["standard", "electric", "van", "7-seat"],
+    hasEV: true,
     description: "App-based carsharing in major Israeli cities, with cars, family vehicles and vans available for planned short-term use.",
     descriptionHe: "שירות שיתוף רכבים מבוסס אפליקציה במספר ערים מרכזיות בישראל, עם רכבים פרטיים, רכבים משפחתיים ומסחריות לשימוש קצר ומתוכנן.",
     category: "round_trip_carsharing",
@@ -14,8 +14,10 @@ window.PROVIDERS = [
     returnModelHe: "חניה ייעודית / החזרה למיקום מוגדר",
     pricingModels: ["hourly", "daily", "membership-based"],
     pricingModelsHe: ["לפי שעה", "יומי", "מבוסס מנוי"],
-    cities: ["Tel Aviv", "Jerusalem", "Haifa", "Netanya", "Herzliya", "Petah Tikva", "Modiin", "Ramat Gan", "Giv'atayim", "Kfar Saba", "Bat Yam", "Holon", "Ra'anana", "Hod Hasharon"],
-    cityNamesHe: ["תל אביב", "ירושלים", "חיפה", "נתניה", "הרצליה", "פתח תקווה", "מודיעין", "רמת גן", "גבעתיים", "כפר סבא", "בת ים", "חולון", "רעננה", "הוד השרון"],
+    pricingSummary: "Mini: DRIVE ₪50/month + ₪16/hour or ₪140/day; LITE ₪20/month + ₪20/hour or ₪170/day. Distance: ₪2.30/km for the first 50 km, then ₪1.30/km. Weekend/holiday: +₪4/hour or +₪40/day.",
+    pricingSummaryHe: "מיני: DRIVE ב־50 ₪ לחודש + 16 ₪ לשעה או 140 ₪ ליום; LITE ב־20 ₪ לחודש + 20 ₪ לשעה או 170 ₪ ליום. מרחק: 2.30 ₪ לק״מ ב־50 הק״מ הראשונים, ולאחר מכן 1.30 ₪ לק״מ. סוף שבוע/חג: 4+ ₪ לשעה או 40+ ₪ ליום.",
+    cities: ["Tel Aviv-Yafo", "Jerusalem", "Haifa", "Netanya", "Herzliya", "Petah Tikva", "Modiin", "Ramat Gan", "Giv'atayim", "Kfar Saba", "Bat Yam", "Holon", "Ra'anana", "Hod Hasharon"],
+    cityNamesHe: ["תל אביב-יפו", "ירושלים", "חיפה", "נתניה", "הרצליה", "פתח תקווה", "מודיעין", "רמת גן", "גבעתיים", "כפר סבא", "בת ים", "חולון", "רעננה", "הוד השרון"],
     appBased: true,
     touristFriendly: "unknown",
     bestFor: ["planned errands", "city trips", "people without a private car", "vans / moving"],
@@ -23,18 +25,20 @@ window.PROVIDERS = [
     website: "https://gotoglobal.com/en/goto-car-sharing/",
     logoUrl: "https://www.google.com/s2/favicons?sz=96&domain=gotoglobal.com",
     confidence: "high",
-    lastChecked: "June 2026",
-    lastCheckedHe: "יוני 2026",
-    dataStatus: "Provider page checked; city-level terms need verification",
-    dataStatusHe: "עמוד הספק נבדק; תנאים ברמת עיר דורשים אימות",
-    sourceLabel: "GoTo official site / app listings"
+    lastChecked: "21 June 2026",
+    lastCheckedHe: "21 ביוני 2026",
+    dataStatus: "Current official tariff checked; prices shown are for mini cars and vary by vehicle, plan and time.",
+    dataStatusHe: "המחירון הרשמי העדכני נבדק; המחירים המוצגים הם לרכב מיני ומשתנים לפי רכב, מסלול ומועד.",
+    sources: [
+      { label: "Official GoTo price list", labelHe: "מחירון GoTo הרשמי", url: "https://gotoglobal.com/pricing-list/", status: "official" }
+    ]
   },
   {
     id: "autotel",
     name: "AutoTel",
     hebrewName: "אוטותל",
-    vehicleTypes: ["electric", "hybrid"],
-    hasEV: true,
+    vehicleTypes: ["standard"],
+    hasEV: false,
     description: "Tel Aviv-Yafo carsharing service for short urban trips, with A-to-B returns inside the service area.",
     descriptionHe: "שירות שיתוף רכב בתל אביב-יפו לנסיעות עירוניות קצרות, עם החזרה מנקודה לנקודה בתוך אזור השירות.",
     category: "free_floating_area_carsharing",
@@ -44,6 +48,8 @@ window.PROVIDERS = [
     returnModelHe: "מנקודה לנקודה בתוך אזור השירות בתל אביב-יפו",
     pricingModels: ["per minute", "short urban trips"],
     pricingModelsHe: ["לפי דקה", "נסיעות עירוניות קצרות"],
+    pricingSummary: "The public tariff linked by AutoTel is dated 1 Nov 2020: high-use plan ₪40/month + ₪1.20/minute; light plan ₪10/month + ₪1.70/minute. Treat these as historical until confirmed in the app.",
+    pricingSummaryHe: "המחירון הציבורי שאליו אוטותל מקשרת בתוקף מ־1 בנובמבר 2020: מסלול שימוש גבוה 40 ₪ לחודש + 1.20 ₪ לדקה; מסלול קל 10 ₪ לחודש + 1.70 ₪ לדקה. יש להתייחס למחירים כהיסטוריים עד לאישור באפליקציה.",
     cities: ["Tel Aviv-Yafo"],
     cityNamesHe: ["תל אביב-יפו"],
     appBased: true,
@@ -52,12 +58,15 @@ window.PROVIDERS = [
     bestForHe: ["נסיעות עירוניות מהירות", "משתמשים בתל אביב", "סידורים עירוניים קצרים"],
     website: "https://autotel.co.il/en/",
     logoUrl: "https://www.google.com/s2/favicons?sz=96&domain=autotel.co.il",
-    confidence: "high",
-    lastChecked: "June 2026",
-    lastCheckedHe: "יוני 2026",
-    dataStatus: "Provider page checked; eligibility and tourist use need verification",
-    dataStatusHe: "עמוד הספק נבדק; זכאות ושימוש לתיירים דורשים אימות",
-    sourceLabel: "AutoTel official/app listings"
+    confidence: "medium",
+    lastChecked: "21 June 2026",
+    lastCheckedHe: "21 ביוני 2026",
+    dataStatus: "Service is still listed by Tel Aviv tourism; the only accessible official tariff is dated 2020, so confirm price in the app.",
+    dataStatusHe: "השירות עדיין מופיע באתר התיירות של תל אביב; המחירון הרשמי הנגיש היחיד הוא מ־2020, לכן יש לאשר מחיר באפליקציה.",
+    sources: [
+      { label: "Tel Aviv official visitor guide", labelHe: "מדריך המבקרים הרשמי של תל אביב", url: "https://visit.tel-aviv.gov.il/move/in-tel-aviv", status: "official" },
+      { label: "Official AutoTel tariff (effective 1 Nov 2020)", labelHe: "מחירון אוטותל הרשמי (בתוקף מ־1.11.2020)", url: "https://www.autotel.co.il/wp-content/uploads/2020/11/%D7%9E%D7%97%D7%99%D7%A8%D7%95%D7%9F-%D7%90%D7%95%D7%98%D7%95%D7%AA%D7%9C-%D7%90%D7%A0%D7%92%D7%9C%D7%99%D7%AA-1.11.20.pdf", status: "dated" }
+    ]
   },
   {
     id: "citycar",
@@ -72,8 +81,10 @@ window.PROVIDERS = [
     serviceTypeLabelHe: "שיתוף רכב הלוך-חזור",
     returnModel: "Likely same-station return; verify by location",
     returnModelHe: "כנראה החזרה לאותה תחנה; יש לבדוק לפי מיקום",
-    pricingModels: ["hourly", "daily", "subscription required"],
-    pricingModelsHe: ["לפי שעה", "יומי", "ייתכן שנדרש מנוי"],
+    pricingModels: ["hourly", "daily", "weekly", "monthly"],
+    pricingModelsHe: ["לפי שעה", "יומי", "שבועי", "חודשי"],
+    pricingSummary: "Hourly, daily, weekly and monthly options. CityCar publishes the current amount through a dynamic tariff screen; select the car and plan there before booking. No reliable static price was available to quote.",
+    pricingSummaryHe: "אפשרויות לפי שעה, יום, שבוע וחודש. סיטי קאר מפרסמת את הסכום העדכני במסך מחירון דינמי; יש לבחור שם רכב ומסלול לפני ההזמנה. לא היה מחיר סטטי אמין שניתן לצטט.",
     cities: ["Multiple cities in Israel", "50+ cities"],
     cityNamesHe: ["מספר ערים בישראל", "יותר מ-50 ערים"],
     appBased: true,
@@ -83,11 +94,13 @@ window.PROVIDERS = [
     website: "https://www.citycar.co.il/",
     logoUrl: "https://www.google.com/s2/favicons?sz=96&domain=citycar.co.il",
     confidence: "medium",
-    lastChecked: "June 2026",
-    lastCheckedHe: "יוני 2026",
-    dataStatus: "General provider presence checked; city-level list should be extracted",
-    dataStatusHe: "נוכחות הספק נבדקה באופן כללי; יש לחלץ רשימת ערים מדויקת",
-    sourceLabel: "CityCar official site / Google Play"
+    lastChecked: "21 June 2026",
+    lastCheckedHe: "21 ביוני 2026",
+    dataStatus: "Official live tariff page found, but its figures are app/dynamic-only; price must be checked there.",
+    dataStatusHe: "נמצא עמוד המחירון הרשמי, אך הסכומים מוצגים רק באופן דינמי/באפליקציה; יש לבדוק שם את המחיר.",
+    sources: [
+      { label: "Official CityCar live price list", labelHe: "המחירון החי הרשמי של סיטי קאר", url: "https://www.citycar.co.il/price_list_screen", status: "official" }
+    ]
   },
   {
     id: "share-israel",
@@ -104,6 +117,8 @@ window.PROVIDERS = [
     returnModelHe: "מיקום מוגדר / יש לבדוק באפליקציה",
     pricingModels: ["hourly", "per kilometer", "self-service rental"],
     pricingModelsHe: ["לפי שעה", "לפי קילומטר", "השכרה בשירות עצמי"],
+    pricingSummary: "From ₪89 for 3 hours, then ₪5.10 per additional hour, plus ₪1.10–₪1.30/km. No subscription fee; fuel and deductible waiver are included. Numeric tariff reported June 2025; verify in app.",
+    pricingSummaryHe: "החל מ־89 ₪ ל־3 שעות, לאחר מכן 5.10 ₪ לכל שעה נוספת, ועוד 1.10–1.30 ₪ לק״מ. ללא דמי מנוי; דלק וביטול השתתפות עצמית כלולים. התעריף המספרי דווח ביוני 2025; יש לאמת באפליקציה.",
     cities: ["All over the country", "Needs city-level verification"],
     cityNamesHe: ["ברחבי הארץ", "דורש אימות ברמת עיר"],
     appBased: true,
@@ -113,18 +128,21 @@ window.PROVIDERS = [
     website: "https://en.shlomo.co.il/share-israel/share-israel-faq",
     logoUrl: "https://www.google.com/s2/favicons?sz=96&domain=shlomo.co.il",
     confidence: "medium",
-    lastChecked: "June 2026",
-    lastCheckedHe: "יוני 2026",
-    dataStatus: "Included as borderline carsharing / short-term access; service-area detail needed",
-    dataStatusHe: "נכלל כשירות גבולי בין שיתוף רכב להשכרה קצרה; דרוש פירוט אזורי שירות",
-    sourceLabel: "Shlomo FAQ / app listings"
+    lastChecked: "21 June 2026",
+    lastCheckedHe: "21 ביוני 2026",
+    dataStatus: "Official app listing updated 18 June 2026 confirms the cost model; numeric tariff comes from a June 2025 market check.",
+    dataStatusHe: "רישום האפליקציה הרשמי עודכן ב־18 ביוני 2026 ומאשר את מודל העלות; התעריף המספרי מבדיקת שוק מיוני 2025.",
+    sources: [
+      { label: "Official Shlomo Share app listing", labelHe: "רישום אפליקציית שלמה Share הרשמי", url: "https://play.google.com/store/apps/details?id=com.positive_apps.buzz_car.prod", status: "official" },
+      { label: "June 2025 tariff check (Walla Cars)", labelHe: "בדיקת תעריפים מיוני 2025 (וואלה רכב)", url: "https://cars.walla.co.il/item/3756150", status: "secondary" }
+    ]
   },
   {
     id: "mycar",
     name: "My Car",
     hebrewName: "מיי קאר",
-    vehicleTypes: ["standard"],
-    hasEV: false,
+    vehicleTypes: ["standard", "electric", "van", "7-seat"],
+    hasEV: true,
     description: "Station-based shared car service with hourly booking and availability in several Israeli cities and communities.",
     descriptionHe: "שירות שיתוף רכבים מבוסס תחנות עם הזמנה לפי שעה וזמינות במספר ערים וקהילות בישראל.",
     category: "round_trip_carsharing",
@@ -134,6 +152,8 @@ window.PROVIDERS = [
     returnModelHe: "החזרה לתחנת המוצא",
     pricingModels: ["hourly", "daily", "per kilometer"],
     pricingModelsHe: ["לפי שעה", "יומי", "לפי קילומטר"],
+    pricingSummary: "Small car ₪14.90/hour or ₪139/day; family ₪22.90/hour or ₪209/day; 7-seat ₪31.90/hour or ₪300/day; EV ₪17.90/hour or ₪255/day. Distance is tiered by category; fuel is included.",
+    pricingSummaryHe: "רכב קטן 14.90 ₪ לשעה או 139 ₪ ליום; משפחתי 22.90 ₪ לשעה או 209 ₪ ליום; 7 מקומות 31.90 ₪ לשעה או 300 ₪ ליום; חשמלי 17.90 ₪ לשעה או 255 ₪ ליום. תעריף המרחק מדורג לפי קטגוריה; הדלק כלול.",
     cities: ["Jerusalem", "Bnei Brak", "Elad", "Beit Shemesh", "Beitar Illit", "Ashdod", "Modiin Illit", "Meron"],
     cityNamesHe: ["ירושלים", "בני ברק", "אלעד", "בית שמש", "ביתר עילית", "אשדוד", "מודיעין עילית", "מירון"],
     appBased: true,
@@ -143,11 +163,13 @@ window.PROVIDERS = [
     website: "https://www.mycar-israel.com/",
     logoUrl: "https://www.google.com/s2/favicons?sz=96&domain=mycar-israel.com",
     confidence: "high",
-    lastChecked: "June 2026",
-    lastCheckedHe: "יוני 2026",
-    dataStatus: "Provider page checked; current city/station coverage should be verified",
-    dataStatusHe: "עמוד הספק נבדק; יש לאמת כיסוי עדכני של ערים ותחנות",
-    sourceLabel: "My Car official site / app listing"
+    lastChecked: "21 June 2026",
+    lastCheckedHe: "21 ביוני 2026",
+    dataStatus: "Current official tariff checked. Holiday/peak surcharges apply and the app price prevails if different.",
+    dataStatusHe: "המחירון הרשמי העדכני נבדק. חלות תוספות בחגים/עונות שיא, ובמקרה של סתירה מחיר האפליקציה קובע.",
+    sources: [
+      { label: "Official My Car tariff", labelHe: "מחירון My Car הרשמי", url: "https://www.mycar-israel.com/price", status: "official" }
+    ]
   },
   {
     id: "toyota-share",
@@ -164,6 +186,8 @@ window.PROVIDERS = [
     returnModelHe: "מבוסס מרכזי שירות / רשת טויוטה",
     pricingModels: ["half-day", "daily", "monthly"],
     pricingModelsHe: ["חצי יום", "יומי", "חודשי"],
+    pricingSummary: "From ₪99 for up to 6 hours, ₪199/day or ₪3,990/month. No monthly membership fee; deductible waiver is included subject to terms.",
+    pricingSummaryHe: "החל מ־99 ₪ לעד 6 שעות, 199 ₪ ליום או 3,990 ₪ לחודש. אין דמי מנוי חודשיים; ביטול השתתפות עצמית כלול בכפוף לתנאים.",
     cities: ["Tel Aviv-Yafo", "Haifa", "Ra'anana", "Netanya", "Rishon LeZion", "Kfar Saba", "Bnei Brak", "Ramla", "Bat Hefer", "Savyon", "Petah Tikva", "Ruppin College", "Tel Aviv University", "Afula", "Karmiel", "Tiberias", "Beer Sheva", "Jerusalem", "Harish", "Even Yehuda"],
     cityNamesHe: ["תל אביב-יפו", "חיפה", "רעננה", "נתניה", "ראשון לציון", "כפר סבא", "בני ברק", "רמלה", "בת חפר", "סביון", "פתח תקווה", "מכללת רופין", "אוניברסיטת תל אביב", "עפולה", "כרמיאל", "טבריה", "באר שבע", "ירושלים", "חריש", "אבן יהודה"],
     appBased: true,
@@ -173,12 +197,14 @@ window.PROVIDERS = [
     website: "https://www.toyota.co.il/discover-toyota/toyota-share",
     logoUrl: "https://www.google.com/s2/favicons?sz=96&domain=toyota.co.il",
     confidence: "high",
-    lastChecked: "June 2026",
-    lastCheckedHe: "יוני 2026",
-    dataStatus: "Included as borderline short-term access; not classic carsharing",
-    dataStatusHe: "נכלל כשירות גבולי לגישה קצרה לרכב; לא שיתוף רכב קלאסי",
+    lastChecked: "21 June 2026",
+    lastCheckedHe: "21 ביוני 2026",
+    dataStatus: "Current official price examples and coverage checked; this is short-term rental-like access, not classic urban carsharing.",
+    dataStatusHe: "דוגמאות המחיר והפריסה הרשמיות העדכניות נבדקו; זו גישה דמוית השכרה קצרה, לא שיתוף רכב עירוני קלאסי.",
     notes: "Borderline category: more short-term rental / subscription access than classic urban carsharing.",
-    sourceLabel: "Toyota Israel official site"
+    sources: [
+      { label: "Official Toyota SHARE page", labelHe: "עמוד Toyota SHARE הרשמי", url: "https://www.toyota.co.il/discover-toyota/toyota-share", status: "official" }
+    ]
   }
 ];
 

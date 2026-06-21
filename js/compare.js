@@ -22,6 +22,9 @@ function localizedCities(provider) {
 function localizedPricing(provider) {
   return lang() === "he" && provider.pricingModelsHe?.length ? provider.pricingModelsHe : provider.pricingModels;
 }
+function localizedPricingSummary(provider) {
+  return lang() === "he" && provider.pricingSummaryHe ? provider.pricingSummaryHe : provider.pricingSummary;
+}
 function localizedBestFor(provider) {
   return lang() === "he" && provider.bestForHe?.length ? provider.bestForHe : provider.bestFor;
 }
@@ -40,6 +43,12 @@ function localizedLastChecked(provider) {
 function localizedTourist(provider) {
   return tr(provider.touristFriendly || "unknown");
 }
+function sourceLinks(provider) {
+  return (provider.sources || []).map(source => {
+    const label = lang() === "he" && source.labelHe ? source.labelHe : source.label;
+    return `<a class="source-link" href="${source.url}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`;
+  }).join("") || tr("needsVerification");
+}
 
 function renderTable() {
   if (!tableBody) return;
@@ -54,12 +63,13 @@ function renderTable() {
       <td>${list(localizedCities(provider))}</td>
       <td>${localizedService(provider)}</td>
       <td>${localizedReturn(provider)}</td>
-      <td>${list(localizedPricing(provider))}</td>
+      <td><strong>${localizedPricingSummary(provider) || list(localizedPricing(provider))}</strong></td>
       <td>${yesNo(provider.appBased)}</td>
       <td>${localizedTourist(provider)}</td>
       <td>${list(localizedBestFor(provider))}</td>
       <td>${localizedLastChecked(provider)}</td>
       <td>${localizedDataStatus(provider)}</td>
+      <td class="source-list">${sourceLinks(provider)}</td>
       <td><a class="table-link" href="${provider.website}" target="_blank" rel="noopener">${tr("openProvider")}</a></td>
     </tr>
   `).join("");
