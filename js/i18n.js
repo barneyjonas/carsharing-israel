@@ -338,10 +338,12 @@
 
   function applyTranslations(lang = getCurrentLang()) {
     document.documentElement.lang = lang;
-    // Set dir on body, not html — setting dir on html shifts Chrome's horizontal
-    // scroll origin to the right edge of the document (broken with Leaflet tiles)
-    document.body.setAttribute("dir", lang === "he" ? "rtl" : "ltr");
-    document.body.classList.toggle("rtl", lang === "he");
+    // Set dir on #app wrapper, NOT on html or body — setting dir on the scroll
+    // root (html/body) causes Chrome to shift scroll origin to right edge of the
+    // 10374px Leaflet canvas, making the RTL page appear blank.
+    const appEl = document.getElementById("app") || document.body;
+    appEl.setAttribute("dir", lang === "he" ? "rtl" : "ltr");
+    appEl.classList.toggle("rtl", lang === "he");
     window.scrollTo(0, 0);
 
     document.querySelectorAll("[data-i18n]").forEach(el => {

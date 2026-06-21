@@ -447,26 +447,26 @@ tr:last-child td { border-bottom: none; }
   height: 32px;
   border-radius: 9px;
 }
-body[dir="rtl"] body {
+#app[dir="rtl"] {
   font-family: Arial, "Noto Sans Hebrew", "Rubik", system-ui, sans-serif;
 }
-/* RTL layout — direction:rtl on <html> already reverses flex row direction,
+/* RTL layout — dir="rtl" on #app already reverses flex row direction,
    so we do NOT add row-reverse here (that would cancel out RTL). */
-body[dir="rtl"] .nav-links { justify-content: flex-start; }
-body[dir="rtl"] .choice-button { text-align: right; }
-body[dir="rtl"] th,
-body[dir="rtl"] td { text-align: right; }
-body[dir="rtl"] .map-panel ul,
-body[dir="rtl"] .guide-card ul { padding-left: 0; padding-right: 18px; }
-body[dir="rtl"] h1 { letter-spacing: -.04em; }
-body[dir="rtl"] .leaflet-popup-content { direction: rtl; text-align: right; }
-body[dir="rtl"] .card-footer a,
-body[dir="rtl"] .table-link { direction: ltr; unicode-bidi: isolate; }
-body[dir="rtl"] .meta-item strong,
-body[dir="rtl"] .filter-field label { text-align: right; }
+#app[dir="rtl"] .nav-links { justify-content: flex-start; }
+#app[dir="rtl"] .choice-button { text-align: right; }
+#app[dir="rtl"] th,
+#app[dir="rtl"] td { text-align: right; }
+#app[dir="rtl"] .map-panel ul,
+#app[dir="rtl"] .guide-card ul { padding-left: 0; padding-right: 18px; }
+#app[dir="rtl"] h1 { letter-spacing: -.04em; }
+#app[dir="rtl"] .leaflet-popup-content { direction: rtl; text-align: right; }
+#app[dir="rtl"] .card-footer a,
+#app[dir="rtl"] .table-link { direction: ltr; unicode-bidi: isolate; }
+#app[dir="rtl"] .meta-item strong,
+#app[dir="rtl"] .filter-field label { text-align: right; }
 
 @media (max-width: 620px) {
   .language-switcher { align-self: center; }
-  body[dir="rtl"] .language-switcher { margin-left: 0; margin-right: auto; }
-  body[dir="rtl"] .nav-links { justify-content: flex-start; }
+  #app[dir="rtl"] .language-switcher { margin-left: 0; margin-right: auto; }
+  #app[dir="rtl"] .nav-links { justify-content: flex-start; }
 }
