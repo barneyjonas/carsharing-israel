@@ -431,21 +431,9 @@ tr:last-child td { border-bottom: none; }
 html[dir="rtl"] body {
   font-family: Arial, "Noto Sans Hebrew", "Rubik", system-ui, sans-serif;
 }
-html[dir="rtl"] .nav,
-html[dir="rtl"] .footer-inner,
-html[dir="rtl"] .card-footer,
-html[dir="rtl"] .section-header,
-html[dir="rtl"] .methodology-callout,
-html[dir="rtl"] .card-top {
-  flex-direction: row-reverse;
-}
-html[dir="rtl"] .brand,
-html[dir="rtl"] .nav-links,
-html[dir="rtl"] .language-switcher,
-html[dir="rtl"] .provider-heading,
-html[dir="rtl"] .table-provider {
-  flex-direction: row-reverse;
-}
+/* RTL layout — direction:rtl on <html> already reverses flex row direction,
+   so we do NOT add row-reverse here (that would cancel out RTL). */
+html[dir="rtl"] .nav-links { justify-content: flex-start; }
 html[dir="rtl"] .choice-button { text-align: right; }
 html[dir="rtl"] th,
 html[dir="rtl"] td { text-align: right; }
@@ -455,9 +443,11 @@ html[dir="rtl"] h1 { letter-spacing: -.04em; }
 html[dir="rtl"] .leaflet-popup-content { direction: rtl; text-align: right; }
 html[dir="rtl"] .card-footer a,
 html[dir="rtl"] .table-link { direction: ltr; unicode-bidi: isolate; }
+html[dir="rtl"] .meta-item strong,
+html[dir="rtl"] .filter-field label { text-align: right; }
 
 @media (max-width: 620px) {
   .language-switcher { align-self: flex-start; }
   html[dir="rtl"] .nav { align-items: flex-end; }
-  html[dir="rtl"] .nav-links { justify-content: flex-end; }
+  html[dir="rtl"] .nav-links { justify-content: flex-start; }
 }
