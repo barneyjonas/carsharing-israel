@@ -74,6 +74,20 @@ function touristText(value) {
   return tr(value || "unknown");
 }
 
+
+const SERVICE_ICONS = {
+  round_trip_carsharing: "🔄",
+  free_floating_area_carsharing: "📍",
+  self_service_short_term_access: "📱",
+  brand_short_term_access: "🏷️",
+  peer_to_peer_carsharing: "👤",
+  corporate_campus_sharing: "🏢"
+};
+
+function serviceIcon(category) {
+  return SERVICE_ICONS[category] || "🚗";
+}
+
 function providerCard(provider) {
   const confidenceClass = provider.confidence === "high" ? "high" : provider.confidence === "medium" ? "medium" : "";
   const touristClass = provider.touristFriendly === "yes" ? "high" : provider.touristFriendly === "unknown" ? "medium" : "";
@@ -91,8 +105,9 @@ function providerCard(provider) {
       </div>
       <p>${localizedDescription(provider)}</p>
       <div class="badges">
-        ${pill(localizedService(provider))}
+        ${pill(`${serviceIcon(provider.category)} ${localizedService(provider)}`)}
         ${provider.appBased ? pill(tr("appBased"), "high") : pill(tr("noApp"))}
+        ${provider.hasEV ? pill("⚡ " + tr("evAvailable"), "ev") : ""}
         ${pill(`${tr("tourist")}: ${touristText(provider.touristFriendly)}`, touristClass)}
       </div>
       <div class="meta-list">
