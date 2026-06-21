@@ -1,237 +1,200 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="מדריך עצמאי לשיתוף רכב בישראל | Independent guide to carsharing in Israel">
-  <title>שיתוף רכב בישראל | Carsharing Israel</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-  <!-- Leaflet -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" data-i18n-meta="homepageMeta" content="Compare carsharing and app-based short-term car access options in Israel by city, trip type, service model, and data status.">
+  <meta property="og:title" content="Carsharing Israel | Find shared car options by city">
+  <meta property="og:description" content="Compare carsharing and app-based short-term car access options in Israel by city, trip type and service model.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://barneyjonas.github.io/carsharing-israel/">
+  <title data-i18n-title="homepageTitle">Carsharing Israel | Find shared car options by city</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="lang-he">
-
-  <!-- ── Header ── -->
-  <header>
-    <div class="header-inner">
-      <div class="logo">
-        <div class="logo-mark">ש</div>
-        <span>שיתוף רכב ישראל</span>
-      </div>
-      <nav>
-        <a href="#providers" data-i18n="navProviders">ספקים</a>
-        <a href="#map" data-i18n="navMap">מפה</a>
-        <a href="#compare" data-i18n="navCompare">השוואה</a>
-        <a href="#about" data-i18n="navAbout">אודות</a>
-        <button class="lang-toggle">EN</button>
+<body>
+  <a class="skip-link" href="#providers">Skip to providers</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Carsharing <span data-i18n="brandIsrael">Israel</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" aria-current="page" data-i18n="navHome">Home</a>
+        <a href="compare.html" data-i18n="navCompare">Compare</a>
+        <a href="guide.html" data-i18n="navGuide">Guide</a>
+        <a href="methodology.html" data-i18n="navMethodology">Methodology</a>
       </nav>
+      <div class="language-switcher" aria-label="Language">
+        <span data-i18n="langLabel">Language</span>
+        <button type="button" data-lang-button="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-button="he" aria-pressed="false">עברית</button>
+      </div>
     </div>
   </header>
 
-  <!-- ── Hero ── -->
-  <section class="hero">
-    <h1 data-i18n="heroTitle">שיתוף רכב <span>בישראל</span></h1>
-    <p data-i18n="heroSubtitle">מדריך עצמאי ומקיף לכל שירותי שיתוף הרכב בישראל. השווה ספקים, כיסוי עיר, מחירים וסוגי רכב.</p>
-    <div class="hero-cta">
-      <a href="#providers" class="btn btn-primary" data-i18n="heroCta1">השווה ספקים</a>
-      <a href="#map" class="btn btn-outline" data-i18n="heroCta2">צפה במפה</a>
-    </div>
-  </section>
-
-  <!-- ── Stats Bar ── -->
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <span class="stat-number" id="stat-providers">3</span>
-        <div class="stat-label" data-i18n="statProviders">ספקים</div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">4</span>
-        <div class="stat-label" data-i18n="statCities">ערים</div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number">3</span>
-        <div class="stat-label" data-i18n="statTypes">סוגי שירות</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Filters ── -->
-  <div class="filters-section" id="filters">
-    <div class="filters-inner">
-      <div class="filter-group">
-        <label data-i18n="filterCity">עיר:</label>
-        <select id="filter-city">
-          <option value="all" data-i18n="cityAll">כל הערים</option>
-          <option value="tel-aviv" data-i18n="cityTelAviv">תל אביב</option>
-          <option value="jerusalem" data-i18n="cityJerusalem">ירושלים</option>
-          <option value="haifa" data-i18n="cityHaifa">חיפה</option>
-          <option value="beer-sheva" data-i18n="cityBeerSheva">באר שבע</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label data-i18n="filterType">סוג:</label>
-        <select id="filter-type">
-          <option value="all" data-i18n="filterAll">הכל</option>
-          <option value="free-floating" data-i18n="typeFreeFloating">Free-floating</option>
-          <option value="round-trip" data-i18n="typeRoundTrip">הלוך-חזור</option>
-          <option value="peer-to-peer" data-i18n="typePeerToPeer">עמית-לעמית</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label data-i18n="filterVehicle">רכב:</label>
-        <select id="filter-vehicle">
-          <option value="all" data-i18n="filterAll">הכל</option>
-          <option value="electric" data-i18n="vehicleElectric">חשמלי</option>
-          <option value="hybrid" data-i18n="vehicleHybrid">היברידי</option>
-          <option value="standard" data-i18n="vehicleStandard">רגיל</option>
-        </select>
-      </div>
-      <button class="filter-reset" id="filter-reset" data-i18n="filterReset">נקה סינון</button>
-    </div>
-  </div>
-
-  <!-- ── Providers ── -->
-  <section class="providers-section" id="providers">
-    <div class="container">
-      <h2 class="section-title" data-i18n="providersTitle">ספקי שיתוף <span>הרכב</span></h2>
-      <p class="section-subtitle" data-i18n="providersSubtitle">כל הספקים הפעילים בישראל</p>
-      <div class="providers-grid" id="providers-grid">
-        <!-- Rendered by JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Map ── -->
-  <section class="map-section" id="map">
-    <div class="container">
-      <h2 class="section-title" data-i18n="mapTitle">כיסוי <span>גיאוגרפי</span></h2>
-      <p class="section-subtitle" data-i18n="mapSubtitle">אזורי פעילות של כל ספק</p>
-      <div id="map"></div>
-    </div>
-  </section>
-
-  <!-- ── Comparison ── -->
-  <section class="comparison-section" id="compare">
-    <div class="container">
-      <h2 class="section-title" data-i18n="compareTitle">השוואת <span>ספקים</span></h2>
-      <p class="section-subtitle" data-i18n="compareSubtitle">השוואה מהירה בין כל הספקים</p>
-      <div class="table-wrapper">
-        <table>
-          <thead id="compare-thead"></thead>
-          <tbody id="compare-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── About ── -->
-  <section class="about-section" id="about">
-    <div class="container">
-      <h2 class="section-title" data-i18n="aboutTitle">על <span>הפרויקט</span></h2>
-      <p class="section-subtitle" data-i18n="aboutSubtitle">מדריך עצמאי לשיתוף רכב בישראל</p>
-      <div class="about-grid">
-        <div class="about-card">
-          <h3 data-i18n="aboutCard1Title">מה זה שיתוף רכב?</h3>
-          <p data-i18n="aboutCard1Text">שיתוף רכב מאפשר לאנשים להשתמש ברכב לפי הצורך מבלי להחזיקו. תשלום לפי שימוש, ללא ביטוח, תחזוקה וחניה.</p>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow" data-i18n="heroEyebrow">Independent MVP overview · Israel</span>
+          <h1 data-i18n="heroTitle">Where do you need a car?</h1>
+          <p class="lead" data-i18n="heroLead">Compare carsharing and app-based short-term car access in Israel by city, trip type and service model.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#providers" data-i18n="heroPrimary">Find providers</a>
+            <a class="button secondary" href="methodology.html" data-i18n="heroSecondary">What we include</a>
+          </div>
         </div>
-        <div class="about-card">
-          <h3 data-i18n="aboutCard2Title">למה זה חשוב?</h3>
-          <p data-i18n="aboutCard2Text">פחות רכבים בדרכים = פחות פקק, פחות זיהום, פחות צורך בחניות. שיתוף רכב הוא חלק מתחבורה ציבורית חכמה.</p>
-        </div>
-        <div class="about-card">
-          <h3 data-i18n="aboutCard3Title">המידע</h3>
-          <p data-i18n="aboutCard3Text">האתר הזה הוא מקור מידע עצמאי ולא-מסחרי. אנחנו לא מייצגים ספק מסוים ועושים מאמץ לשמור על דיוק ועדכניות.</p>
-        </div>
+        <aside class="stat-panel" aria-label="MVP database summary">
+          <div class="stat"><strong>6</strong><span data-i18n="statProviders">initial providers mapped</span></div>
+          <div class="stat"><strong>4</strong><span data-i18n="statTypes">service types classified</span></div>
+          <div class="stat"><strong data-i18n="statCityFirstTitle">City-first</strong><span data-i18n="statCityFirstText">designed around practical user choice</span></div>
+        </aside>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Resources ── -->
-  <section class="resources-section" id="resources">
-    <div class="container">
-      <h2 class="section-title" data-i18n="resourcesTitle">מקורות <span>ומחקרים</span></h2>
-      <p class="section-subtitle" data-i18n="resourcesSubtitle">קישורים שימושיים לתחבורה שיתופית בישראל</p>
-      <div class="resources-grid">
-        <div class="resource-card">
-          <div class="resource-icon">🏛️</div>
+    <section class="section quick-start" aria-labelledby="quick-start-title">
+      <div class="container">
+        <div class="section-header">
           <div>
-            <h4>משרד התחבורה</h4>
-            <p>מדיניות ורגולציה של תחבורה שיתופית בישראל</p>
-            <a href="https://www.gov.il/he/departments/ministry_of_transport" target="_blank" rel="noopener">לאתר ←</a>
+            <h2 id="quick-start-title" data-i18n="quickTitle">Start with your situation</h2>
+            <p data-i18n="quickText">These shortcuts keep the entry point simple. They are not recommendations; they pre-filter the overview.</p>
           </div>
         </div>
-        <div class="resource-card">
-          <div class="resource-icon">🌍</div>
-          <div>
-            <h4>CoMoUK</h4>
-            <p>מחקרים ודוחות על תחבורה שיתופית מבריטניה</p>
-            <a href="https://www.como.org.uk" target="_blank" rel="noopener">לאתר ←</a>
-          </div>
-        </div>
-        <div class="resource-card">
-          <div class="resource-icon">🔬</div>
-          <div>
-            <h4>CHACOMO</h4>
-            <p>אסוציאציה שוויצרית לניידות שיתופית — נתונים ומחקר</p>
-            <a href="https://www.chacomo.ch" target="_blank" rel="noopener">לאתר ←</a>
-          </div>
-        </div>
-        <div class="resource-card">
-          <div class="resource-icon">📊</div>
-          <div>
-            <h4>UITP</h4>
-            <p>ארגון בינלאומי לתחבורה ציבורית — מחקרים על שיתוף רכב</p>
-            <a href="https://www.uitp.org" target="_blank" rel="noopener">לאתר ←</a>
-          </div>
+        <div class="choice-grid quick-choice-grid">
+          <button class="choice-card choice-button" data-filter-city="Tel Aviv-Yafo" type="button">
+            <h3 data-i18n="quickTelAvivTitle">Tel Aviv city trip</h3>
+            <p data-i18n="quickTelAvivText">Show providers relevant to short urban trips in Tel Aviv-Yafo.</p>
+          </button>
+          <button class="choice-card choice-button" data-filter-city="Jerusalem" type="button">
+            <h3 data-i18n="quickJerusalemTitle">Jerusalem access</h3>
+            <p data-i18n="quickJerusalemText">Show providers with known Jerusalem availability.</p>
+          </button>
+          <button class="choice-card choice-button" data-filter-usecase="families" type="button">
+            <h3 data-i18n="quickFamilyTitle">Family or planned trip</h3>
+            <p data-i18n="quickFamilyText">Show providers tagged for planned errands and family use.</p>
+          </button>
+          <button class="choice-card choice-button" data-filter-usecase="people without a private car" type="button">
+            <h3 data-i18n="quickNoCarTitle">No private car</h3>
+            <p data-i18n="quickNoCarText">Show services relevant for occasional car access.</p>
+          </button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Footer ── -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="logo" style="margin-bottom:1rem">
-            <div class="logo-mark">ש</div>
-            <span style="color:white;font-weight:700">שיתוף רכב ישראל</span>
+    <section class="section taxonomy-strip" aria-labelledby="taxonomy-title">
+      <div class="container">
+        <div class="section-header compact">
+          <div>
+            <h2 id="taxonomy-title" data-i18n="taxonomyTitle">Service types used here</h2>
+            <p data-i18n="taxonomyText">The Israeli market mixes classic carsharing and rental-like short-term access. This MVP separates them so users do not compare different models blindly.</p>
           </div>
-          <p data-i18n="footerTagline">מידע עצמאי על שיתוף רכב בישראל</p>
         </div>
-        <div class="footer-col">
-          <h4 data-i18n="footerQuickLinks">ניווט מהיר</h4>
-          <a href="#providers" data-i18n="navProviders">ספקים</a>
-          <a href="#map" data-i18n="navMap">מפה</a>
-          <a href="#compare" data-i18n="navCompare">השוואה</a>
-          <a href="#about" data-i18n="navAbout">אודות</a>
-        </div>
-        <div class="footer-col">
-          <h4 data-i18n="footerContact">יצירת קשר</h4>
-          <p data-i18n="footerContactText">שגיאה במידע? מכיר ספק שחסר? כתוב לנו.</p>
+        <div class="taxonomy-grid">
+          <article class="taxonomy-card"><h3 data-i18n="taxRoundTitle">Round-trip carsharing</h3><p data-i18n="taxRoundText">Pick up and return to a defined station or parking location.</p></article>
+          <article class="taxonomy-card"><h3 data-i18n="taxFloatingTitle">Free-floating / area-based</h3><p data-i18n="taxFloatingText">Pick up and return inside a defined service area, where available.</p></article>
+          <article class="taxonomy-card"><h3 data-i18n="taxRentalTitle">Self-service app rental</h3><p data-i18n="taxRentalText">Rental-like access with app-based or low-friction pickup.</p></article>
+          <article class="taxonomy-card"><h3 data-i18n="taxBrandTitle">Brand short-term access</h3><p data-i18n="taxBrandText">Manufacturer or network-based car access for half-day, day or longer use.</p></article>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2025 <span>Carsharing Israel</span></span>
-        <span data-i18n="footerRights">כל הזכויות שמורות</span>
+    </section>
+
+    <section class="section map-section" aria-labelledby="map-title">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 id="map-title" data-i18n="mapTitle">Coverage map</h2>
+            <p data-i18n="mapText">City-level orientation map based on the current provider database. Markers show known or approximate city coverage, not exact vehicles, stations or live availability.</p>
+          </div>
+        </div>
+        <div class="map-layout">
+          <div class="map-card">
+            <div id="coverageMap" class="coverage-map" role="img" aria-label="Map of approximate carsharing coverage in Israel"></div>
+            <p class="map-fallback" id="mapFallback" data-i18n="mapFallback">If the interactive map does not load, check the city list next to it. The MVP uses external map tiles and requires an internet connection.</p>
+          </div>
+          <aside class="map-panel" aria-label="Map explanation">
+            <h3 data-i18n="mapReadTitle">How to read this map</h3>
+            <ul>
+              <li data-i18n="mapLi1">Markers represent cities or areas, not precise pickup points.</li>
+              <li data-i18n="mapLi2">The map updates together with the provider filters below.</li>
+              <li data-i18n="mapLi3">Generic entries such as “50+ cities” are kept out of the map until city-level data is verified.</li>
+            </ul>
+            <div class="coverage-list" id="coverageList"></div>
+          </aside>
+        </div>
       </div>
+    </section>
+
+    <section class="section" id="providers">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 data-i18n="providersTitle">Provider overview</h2>
+            <p data-i18n="providersText">Filter the first database by city, trip type, service model, pricing model and tourist-friendliness.</p>
+          </div>
+        </div>
+
+        <form class="filters" aria-label="Provider filters" onsubmit="return false;">
+          <div class="filter-field primary-filter">
+            <label for="cityFilter" data-i18n="cityLabel">City / area</label>
+            <select id="cityFilter"></select>
+          </div>
+          <div class="filter-field primary-filter">
+            <label for="useCaseFilter" data-i18n="tripTypeLabel">Trip type</label>
+            <select id="useCaseFilter"></select>
+          </div>
+          <div class="filter-field">
+            <label for="serviceFilter" data-i18n="serviceModelLabel">Service model</label>
+            <select id="serviceFilter"></select>
+          </div>
+          <div class="filter-field">
+            <label for="pricingFilter" data-i18n="pricingLabel">Pricing</label>
+            <select id="pricingFilter"></select>
+          </div>
+          <div class="filter-field">
+            <label for="appFilter" data-i18n="appRequiredLabel">App required</label>
+            <select id="appFilter"></select>
+          </div>
+          <div class="filter-field">
+            <label for="touristFilter" data-i18n="touristLabel">Tourist</label>
+            <select id="touristFilter"></select>
+          </div>
+          <div class="filter-field">
+            <label>&nbsp;</label>
+            <button class="reset" id="resetFilters" type="button" data-i18n="resetFilters">Reset filters</button>
+          </div>
+        </form>
+
+        <p class="result-count" id="resultCount"></p>
+        <div class="provider-grid" id="providerGrid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container methodology-callout">
+        <div>
+          <h2 data-i18n="methodologyCalloutTitle">Method before completeness</h2>
+          <p data-i18n="methodologyCalloutText">This MVP deliberately distinguishes confirmed provider presence from unverified details such as exact station coverage, tourist eligibility, Shabbat availability, licence rules, insurance and current pricing.</p>
+        </div>
+        <a class="button secondary" href="methodology.html" data-i18n="methodologyButton">Read methodology</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container disclaimer">
+        <strong data-i18n="disclaimerLabel">Disclaimer.</strong> <span data-i18n="disclaimerText">This website is an independent MVP overview. Prices, vehicle availability, service areas, eligibility rules, insurance conditions and app access may change. Always check the provider’s official website or app before booking.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span data-i18n="footerName">Carsharing Israel MVP</span>
+      <span data-i18n="footerNote">Independent overview. Not affiliated with listed providers.</span>
     </div>
   </footer>
-
-  <!-- Scripts -->
+  <script src="js/providers.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="script.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" data-i18n-meta="compareMeta" content="Comparison table for carsharing and app-based short-term car access options in Israel.">
+  <title data-i18n-title="compareTitleMeta">Compare Providers | Carsharing Israel</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">Carsharing <span data-i18n="brandIsrael">Israel</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" data-i18n="navHome">Home</a>
+        <a href="compare.html" aria-current="page" data-i18n="navCompare">Compare</a>
+        <a href="guide.html" data-i18n="navGuide">Guide</a>
+        <a href="methodology.html" data-i18n="navMethodology">Methodology</a>
+      </nav>
+      <div class="language-switcher" aria-label="Language">
+        <span data-i18n="langLabel">Language</span>
+        <button type="button" data-lang-button="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang-button="he" aria-pressed="false">עברית</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-title">
+      <div class="container">
+        <span class="eyebrow" data-i18n="compareEyebrow">Provider comparison</span>
+        <h1 data-i18n="compareTitle">Compare providers</h1>
+        <p data-i18n="compareIntro">A compact table for scanning providers by city, service model, return logic, pricing structure and verification status.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container table-wrap">
+        <table id="comparisonTable">
+          <thead>
+            <tr>
+              <th data-i18n="thProvider">Provider</th>
+              <th data-i18n="thCities">Main cities / areas</th>
+              <th data-i18n="thService">Service model</th>
+              <th data-i18n="thReturn">Return model</th>
+              <th data-i18n="thPricing">Pricing structure</th>
+              <th data-i18n="thApp">App-based</th>
+              <th data-i18n="thTourist">Tourist</th>
+              <th data-i18n="thBest">Best for</th>
+              <th data-i18n="thChecked">Last checked</th>
+              <th data-i18n="thStatus">Data status</th>
+              <th data-i18n="thWebsite">Website</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container disclaimer">
+        <strong data-i18n="compareDisclaimerLabel">Working assumption.</strong> <span data-i18n="compareDisclaimerText">“Tourist-friendly” is deliberately marked as unknown until driver licence, Israeli ID, credit-card and insurance requirements are checked provider by provider.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span data-i18n="footerName">Carsharing Israel MVP</span>
+      <span data-i18n="footerNote">Independent overview. Not affiliated with listed providers.</span>
+    </div>
+  </footer>
+  <script src="js/providers.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/compare.js"></script>
+</body>
+</html>
